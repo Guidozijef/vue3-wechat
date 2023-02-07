@@ -12,9 +12,16 @@
       <input type="file" name="" class="header-img_upload" @change="uploadImg" />
     </div>
     <div class="content-box">
-      <div class="">
-        <span class="name"></span>
-        <p class="content-text"></p>
+      <div class="people-box">
+        <div>
+          <img class="other-header-img" :src="currImg" alt="" />
+          <input type="file" name="" class="other-header-img_upload" @change="uploadImg" />
+        </div>
+        <p class="name-info">
+          <span class="other-name">枫桥夜泊</span>
+          <span class="text">世界那么大我想世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看去看看</span>
+          <video ref="video" width="100%" height="500" class="video" :src="currVideoSrc" preload="auto"></video>
+        </p>
       </div>
     </div>
   </div>
@@ -23,7 +30,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-const currImg = ref(new URL("../assets/img/role.png", import.meta.url).href);
+const currImg = ref(new URL("../assets/img/self.jpg", import.meta.url).href);
 const currVideoSrc = ref("");
 
 const video = ref();
@@ -149,6 +156,40 @@ const pause = () => {
       opacity: 0;
       position: absolute;
       cursor: pointer;
+    }
+  }
+  .content-box {
+    margin: 40px 20px 0px;
+    .people-box {
+      display: flex;
+      // align-items: center;
+      .other-header-img {
+        height: 40px;
+        height: 40px;
+        border-radius: 2px;
+        display: inline-block;
+      }
+      .other-header-img_upload {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 0;
+        opacity: 0;
+      }
+      .name-info {
+        display: inline-block;
+        margin-left: 7px;
+        .other-name {
+          font-size: 15px;
+          color: #5c6b8c;
+          display: block;
+        }
+        .text {
+          display: block;
+          font-size: 16px;
+          color: #000;
+        }
+      }
     }
   }
 }
