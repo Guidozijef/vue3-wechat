@@ -6,16 +6,16 @@
       <i v-else-if="isPlay === 'pause'" class="iconfont icon-zanting" @click="pause"></i>
     </div>
     <div class="header-box">
-      <input type="file" name="" class="video_uplaod" @change="previewVideo" />
+      <input type="file" name="" class="video_uplaod" @change="uploadVideo" />
       <span class="name">枫桥夜泊</span>
-      <img class="header-img" :src="currImg" alt="" />
-      <input type="file" name="" class="header-img_upload" @change="uploadImg" />
+      <img class="header-img" :src="selfImg" alt="" />
+      <input type="file" name="" class="header-img_upload" @change="uploadSelfImg" />
     </div>
     <div class="content-box">
       <div class="people-box">
         <div>
-          <img class="other-header-img" :src="currImg" alt="" />
-          <input type="file" name="" class="other-header-img_upload" @change="uploadImg" />
+          <img class="other-header-img" :src="otherImg" alt="" />
+          <input type="file" name="" class="other-header-img_upload" @change="uploadOtherImg" />
         </div>
         <p class="name-info">
           <span class="other-name">枫桥夜泊</span>
@@ -29,9 +29,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import { useUpload } from "@/hooks";
 
-const currImg = ref(new URL("../assets/img/self.jpg", import.meta.url).href);
-const currVideoSrc = ref("");
+const [selfImg, uploadSelfImg] = useUpload();
+
+const [otherImg, uploadOtherImg] = useUpload();
+
+const [currVideoSrc, uploadVideo] = useUpload();
 
 const video = ref();
 const video1 = ref();
@@ -66,44 +70,6 @@ const tagglePlay = () => {
     video.value.pause();
     video1.value.pause();
   }
-};
-
-const uploadImg = (event: Event) => {
-  let file = event.target.files[0];
-  if (file.type !== "image/png" && file.type !== "image/jpg" && file.type !== "image/jpeg") return;
-  // if (file.size / 1024 / 1024 > 2) return; // 超过2M
-  const windowURL = window.URL || window.webkitURL;
-  const url = windowURL.createObjectURL(file);
-  console.log(file);
-  currImg.value = url;
-};
-
-const previewVideo = (event: Event) => {
-  let file = event.target.files[0];
-  // 建议判断下视频大小及格式，太大的可能会有问题
-  // const reader = new FileReader();
-  // reader.onload = (evt: Event) => {
-  //   currVideoSrc.value = evt.target?.result;
-  //   // video.value.src = evt.target?.result;
-  // };
-  // reader.readAsDataURL(file);
-  // console.log(file);
-  currVideoSrc.value = getObjectURL(file);
-};
-
-const getObjectURL = (file: File) => {
-  let url = "";
-  if (window.createObjectURL != undefined) {
-    // basic
-    url = window.createObjectURL(file);
-  } else if (window.URL != undefined) {
-    // mozilla(firefox)
-    url = window.URL.createObjectURL(file);
-  } else if (window.webkitURL != undefined) {
-    // webkit or chrome
-    url = window.webkitURL.createObjectURL(file);
-  }
-  return url;
 };
 
 const play = () => {
@@ -188,7 +154,7 @@ const pause = () => {
       display: flex;
       // align-items: center;
       .other-header-img {
-        height: 40px;
+        width: 40px;
         height: 40px;
         border-radius: 2px;
         display: inline-block;
