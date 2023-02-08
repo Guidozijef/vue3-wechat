@@ -19,6 +19,11 @@ const router = createRouter({
       name: "wechatMoments",
       component: () => import("../views/WechatMoments.vue"),
     },
+    {
+      path: "/nickname",
+      name: "nickname",
+      component: () => import("../views/Nickname.vue"),
+    },
     // {
     //   path: '/about',
     //   name: 'about',
