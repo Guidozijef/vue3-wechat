@@ -20,7 +20,7 @@
         <p class="name-info">
           <span class="other-name">枫桥夜泊</span>
           <span class="text">世界那么大我想世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看去看看</span>
-          <video ref="video" width="100%" height="500" class="video" :src="currVideoSrc" preload="auto"></video>
+          <video ref="video1" width="100%" height="300" class="video" :src="currVideoSrc" preload="auto"></video>
         </p>
       </div>
     </div>
@@ -34,6 +34,7 @@ const currImg = ref(new URL("../assets/img/self.jpg", import.meta.url).href);
 const currVideoSrc = ref("");
 
 const video = ref();
+const video1 = ref();
 
 let isPlay = ref("play");
 
@@ -60,8 +61,10 @@ onMounted(() => {
 const tagglePlay = () => {
   if (video.value.paused) {
     video.value.play();
+    video1.value.play();
   } else {
     video.value.pause();
+    video1.value.pause();
   }
 };
 
@@ -90,15 +93,18 @@ const previewVideo = (event: Event) => {
 const play = () => {
   if (!currVideoSrc.value) return;
   video.value.play();
+  video1.value.play();
 };
 
 const pause = () => {
   video.value.play();
+  video1.value.play();
 };
 </script>
 
 <style lang="scss" scoped>
 .moments {
+  height: 100%;
   .video-container {
     height: 300px;
     width: 100%;
@@ -188,6 +194,11 @@ const pause = () => {
           display: block;
           font-size: 16px;
           color: #000;
+        }
+        .video {
+          height: 100%;
+          width: 100%;
+          background-color: #000;
         }
       }
     }
