@@ -18,8 +18,8 @@
           <input type="file" name="" class="other-header-img_upload" @change="uploadOtherImg" />
         </div>
         <p class="name-info">
-          <span class="other-name">枫桥夜泊</span>
-          <!-- <input type="text"> -->
+          <span v-if="isEdit" class="other-name" @click="intoEdit">{{ otherNme }}</span>
+          <input v-else type="text" v-model="otherNme" @blur="intoExit">
           <span class="text">世界那么大我想世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看去看看</span>
           <div style="width:100%;height:200px">
             <video ref="video1" class="video" :src="currVideoSrc" preload="auto"></video>
@@ -32,13 +32,17 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { useUpload } from "@/hooks";
+import { useUpload, useTaggleEdit } from "@/hooks";
 
 const [selfImg, uploadSelfImg] = useUpload();
 
 const [otherImg, uploadOtherImg] = useUpload();
 
 const [currVideoSrc, uploadVideo] = useUpload();
+
+const [isEdit, intoEdit, intoExit] = useTaggleEdit()
+
+const otherNme = ref("涵枫雪")
 
 const video = ref();
 const video1 = ref();

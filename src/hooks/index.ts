@@ -16,3 +16,14 @@ export function useUpload() {
   };
   return [url, upload];
 }
+
+export function useTaggleEdit() {
+  const isEdit = ref(true);
+  const intoEdit = () => {
+    isEdit.value = false;
+  };
+  const intoExit = () => {
+    isEdit.value = true;
+  };
+  return [isEdit, intoEdit, intoExit];
+}

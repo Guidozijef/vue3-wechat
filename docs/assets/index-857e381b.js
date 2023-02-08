@@ -1,0 +1,1 @@
+import{r}from"./index-fb78c062.js";function l(e){return(window.URL||window.webkitURL).createObjectURL(e)}function a(){const e=r("right");return[e,()=>{e.value=e.value==="left"?"right":"left"}]}function c(){const e=r(new URL("/vue3-wechat/assets/self-ce77bdb9.jpg",self.location).href);return[e,o=>{const n=o.target.files[0];e.value=l(n)}]}export{c as a,a as u};
