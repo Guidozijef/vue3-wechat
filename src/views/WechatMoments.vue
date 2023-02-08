@@ -19,8 +19,11 @@
         </div>
         <p class="name-info">
           <span class="other-name">枫桥夜泊</span>
+          <!-- <input type="text"> -->
           <span class="text">世界那么大我想世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看去看看</span>
-          <video ref="video1" width="100%" height="300" class="video" :src="currVideoSrc" preload="auto"></video>
+          <div style="width:100%;height:200px">
+            <video ref="video1" class="video" :src="currVideoSrc" preload="auto"></video>
+          </div>
         </p>
       </div>
     </div>
