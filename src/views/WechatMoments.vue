@@ -81,13 +81,29 @@ const uploadImg = (event: Event) => {
 const previewVideo = (event: Event) => {
   let file = event.target.files[0];
   // 建议判断下视频大小及格式，太大的可能会有问题
-  const reader = new FileReader();
-  reader.onload = (evt: Event) => {
-    currVideoSrc.value = evt.target?.result;
-    // video.value.src = evt.target?.result;
-  };
-  reader.readAsDataURL(file);
-  console.log(file);
+  // const reader = new FileReader();
+  // reader.onload = (evt: Event) => {
+  //   currVideoSrc.value = evt.target?.result;
+  //   // video.value.src = evt.target?.result;
+  // };
+  // reader.readAsDataURL(file);
+  // console.log(file);
+  currVideoSrc.value = getObjectURL(file);
+};
+
+const getObjectURL = (file: File) => {
+  let url = "";
+  if (window.createObjectURL != undefined) {
+    // basic
+    url = window.createObjectURL(file);
+  } else if (window.URL != undefined) {
+    // mozilla(firefox)
+    url = window.URL.createObjectURL(file);
+  } else if (window.webkitURL != undefined) {
+    // webkit or chrome
+    url = window.webkitURL.createObjectURL(file);
+  }
+  return url;
 };
 
 const play = () => {
@@ -144,6 +160,8 @@ const pause = () => {
       margin-right: 10px;
       color: #fff;
       margin-top: -35px;
+      width: 100px;
+      text-align: right;
     }
     .video_uplaod {
       opacity: 0;
