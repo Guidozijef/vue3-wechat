@@ -17,7 +17,8 @@ export function useUpload() {
   return [url, upload];
 }
 
-export function useTaggleEdit() {
+export function useTaggleEdit(name: string = "涵枫雪") {
+  const text = ref(name);
   const isEdit = ref(true);
   const intoEdit = () => {
     isEdit.value = false;
@@ -25,5 +26,5 @@ export function useTaggleEdit() {
   const intoExit = () => {
     isEdit.value = true;
   };
-  return [isEdit, intoEdit, intoExit];
+  return [isEdit, text, intoEdit, intoExit];
 }

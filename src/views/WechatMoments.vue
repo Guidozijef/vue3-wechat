@@ -7,7 +7,10 @@
     </div>
     <div class="header-box">
       <input type="file" name="" class="video_uplaod" @change="uploadVideo" />
-      <span class="name">枫桥夜泊</span>
+      <div class="name-box">
+        <span class="name">晓枫残月</span>
+        <!-- <span class="desc">晓枫残月</span> -->
+      </div>
       <img class="header-img" :src="selfImg" alt="" />
       <input type="file" name="" class="header-img_upload" @change="uploadSelfImg" />
     </div>
@@ -18,9 +21,10 @@
           <input type="file" name="" class="other-header-img_upload" @change="uploadOtherImg" />
         </div>
         <p class="name-info">
-          <span v-if="isEdit" class="other-name" @click="intoEdit">{{ otherNme }}</span>
-          <input v-else type="text" v-model="otherNme" @blur="intoExit">
-          <span class="text">世界那么大我想世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看世界那么大我想去看看去看看</span>
+          <span v-if="isEdit" class="other-name" @click="intoEdit">{{ otherName }}</span>
+          <input v-else type="text" v-model="otherName" @blur="intoExit">
+          <span v-if="isContentEdit" class="text" @click="intoContentEdit">{{ content }}</span>
+          <input v-else type="text" v-model="content" @blur="intoContentExit" >
           <div style="width:100%;height:200px">
             <video ref="video1" class="video" :src="currVideoSrc" preload="auto"></video>
           </div>
@@ -31,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useUpload, useTaggleEdit } from "@/hooks";
 
 const [selfImg, uploadSelfImg] = useUpload();
@@ -40,9 +44,10 @@ const [otherImg, uploadOtherImg] = useUpload();
 
 const [currVideoSrc, uploadVideo] = useUpload();
 
-const [isEdit, intoEdit, intoExit] = useTaggleEdit()
+const [isEdit, otherName, intoEdit, intoExit] = useTaggleEdit()
 
-const otherNme = ref("涵枫雪")
+const [isContentEdit, content, intoContentEdit, intoContentExit] = useTaggleEdit("世界那么大我想去看看")
+
 
 const video = ref();
 const video1 = ref();
@@ -68,6 +73,11 @@ onMounted(() => {
     isPlay.value = "play";
   });
 });
+
+
+watch(currVideoSrc, () => {
+  isPlay.value = "play"
+})
 
 const tagglePlay = () => {
   if (video.value.paused) {
@@ -95,7 +105,7 @@ const pause = () => {
 .moments {
   height: 100%;
   .video-container {
-    height: 300px;
+    height: calc(100vw * 3/4);
     width: 100%;
     background-color: #000;
     .video {
@@ -126,16 +136,30 @@ const pause = () => {
     align-items: center;
     justify-content: flex-end;
     position: absolute;
-    right: 10px;
+    right: 20px;
     margin-top: -30px;
-    .name {
-      font-size: 16px;
-      margin-right: 10px;
-      color: #fff;
-      margin-top: -35px;
-      width: 100px;
-      text-align: right;
+    .name-box {
+      height: 60px;
+      .name {
+        display: block;
+        line-height: 30px;
+        font-size: 16px;
+        margin-right: 10px;
+        color: #fff;
+        width: 100px;
+        text-align: right;
+      }
+      .desc{
+        line-height: 30px;
+        display: block;
+        font-size: 14px;
+        margin-right: 10px;
+        color: #000;
+        width: 100px;
+        text-align: right;
+      }
     }
+
     .video_uplaod {
       opacity: 0;
     }
