@@ -14,6 +14,7 @@
       <img class="header-img" :src="selfImg" alt="" />
       <input type="file" name="" class="header-img_upload" @change="uploadSelfImg" />
     </div>
+    <p class="desc">长剑在黑夜呤唱悲歌，岁月如斑驳铜镜经年</p>
     <div class="content-box">
       <div class="people-box">
         <div>
@@ -179,8 +180,15 @@ const pause = () => {
       cursor: pointer;
     }
   }
+  .desc{
+    text-align: right;
+    margin-top: 35px;
+    margin-right: 20px;
+    color: rgb(120, 120, 120);
+    font-size: 12px;
+  }
   .content-box {
-    margin: 40px 20px 0px;
+    margin: 20px 20px 0px;
     .people-box {
       display: flex;
       // align-items: center;
