@@ -24,6 +24,11 @@ const router = createRouter({
       name: "nickname",
       component: () => import("../views/Nickname.vue"),
     },
+    {
+      path: "/video",
+      name: "video",
+      component: () => import("../views/Video.vue"),
+    },
     // {
     //   path: '/about',
     //   name: 'about',
