@@ -51,8 +51,8 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const imgState = reactive({
-  left: new URL(`../assets/img/logo.svg`, import.meta.url).href, // import.meta.glob("../assets/logo.svg"),
-  right: new URL(`../assets/img/role.png`, import.meta.url).href,
+  left: new URL(`../assets/img/role.png`, import.meta.url).href, // import.meta.glob("../assets/logo.svg"),
+  right: new URL(`../assets/img/self.jpg`, import.meta.url).href,
 });
 
 const [currRole, changeCurrRole] = useTaggleRole();
