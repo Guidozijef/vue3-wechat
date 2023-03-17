@@ -14,7 +14,8 @@
       <img class="header-img" :src="selfImg" alt="" />
       <input type="file" name="" class="header-img_upload" @change="uploadSelfImg" />
     </div>
-    <p class="desc">长剑在黑夜呤唱悲歌，岁月如斑驳铜镜经年</p>
+    <p v-if="isSelfEdit" class="desc" @click="intoSelfEdit">{{ selfName }}</p>
+    <input v-else style="width:100%" class="desc" type="text" v-model="selfName" @blur="intoSelfExit">
     <div class="content-box">
       <div class="people-box">
         <div>
@@ -41,13 +42,15 @@ import { useUpload, useTaggleEdit } from "@/hooks";
 
 const [selfImg, uploadSelfImg] = useUpload();
 
-const [otherImg, uploadOtherImg] = useUpload();
+const [otherImg, uploadOtherImg] = useUpload('other');
 
 const [currVideoSrc, uploadVideo] = useUpload();
 
-const [isEdit, otherName, intoEdit, intoExit] = useTaggleEdit()
+const [isEdit, otherName, intoEdit, intoExit] = useTaggleEdit("Mandy")
 
 const [isContentEdit, content, intoContentEdit, intoContentExit] = useTaggleEdit("世界那么大我想去看看")
+
+const [isSelfEdit, selfName, intoSelfEdit, intoSelfExit] = useTaggleEdit("长剑在黑夜呤唱悲歌，岁月如斑驳铜镜经年")
 
 
 const video = ref();
@@ -193,8 +196,8 @@ const pause = () => {
       display: flex;
       // align-items: center;
       .other-header-img {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         border-radius: 2px;
         display: inline-block;
       }

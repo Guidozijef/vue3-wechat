@@ -10,8 +10,8 @@ export function useTaggleRole(): [Ref<string>, () => void] {
   return [currRole, changeCurrRole];
 }
 
-export function useUpload(): [Ref<string>, (event: Event) => void, Ref<string>] {
-  const url = ref(new URL("../assets/img/self.jpg", import.meta.url).href);
+export function useUpload(name = "self"): [Ref<string>, (event: Event) => void, Ref<string>] {
+  const url = ref(new URL(`../assets/img/${name}.jpg`, import.meta.url).href);
   const type = ref("video");
   const upload = (event: Event) => {
     const file = event.target.files[0];
