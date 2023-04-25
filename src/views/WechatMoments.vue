@@ -6,13 +6,13 @@
       <i v-else-if="isPlay === 'pause'" class="iconfont icon-zanting" @click="pause"></i>
     </div>
     <div class="header-box">
-      <input type="file" name="" class="video_uplaod" @change="uploadVideo" />
+      <input type="file" name="" accept="video/*" class="video_uplaod" @change="uploadVideo" />
       <div class="name-box">
         <span class="name">晓枫残月</span>
         <!-- <span class="desc">晓枫残月</span> -->
       </div>
       <img class="header-img" :src="selfImg" alt="" />
-      <input type="file" name="" class="header-img_upload" @change="uploadSelfImg" />
+      <input type="file" name="" accept="image/*" class="header-img_upload" @change="uploadSelfImg" />
     </div>
     <p v-if="isSelfEdit" class="desc" @click="intoSelfEdit">{{ selfName }}</p>
     <input v-else style="width:100%" class="desc" type="text" v-model="selfName" @blur="intoSelfExit">
@@ -20,7 +20,7 @@
       <div class="people-box">
         <div>
           <img class="other-header-img" :src="otherImg" alt="" />
-          <input type="file" name="" class="other-header-img_upload" @change="uploadOtherImg" />
+          <input type="file" name="" accept="image/*" class="other-header-img_upload" @change="uploadOtherImg" />
         </div>
         <p class="name-info">
           <span v-if="isEdit" class="other-name" @click="intoEdit">{{ otherName }}</span>

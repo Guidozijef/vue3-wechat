@@ -9,7 +9,7 @@
       <div :class="`${item.type}-people`" v-for="(item, index) in contentData" :key="index">
         <div class="text-container">
           <img class="head-portrait" :src="imgState[item.type as TType]" alt="" />
-          <input ref="file" type="file" class="upload" name="" @change="uploadImg($event, item.type as TType)" />
+          <input ref="file" type="file" accept="image/*" class="upload" name="" @change="uploadImg($event, item.type as TType)" />
           <div class="people-content">
             {{ item.content }}
             <i class="delete-content" @click="deleteContent(item.id)">×</i>
@@ -26,9 +26,9 @@
         <i class="icon-locat icon-yuyin1"></i>
         <input v-model="value" class="input-content" type="text" @keyup.enter="sendMsg" />
         <span>
-          <i class="icon-locat icon-xiaolian mr-10"></i>
+          <i class="mr-10 icon-locat icon-xiaolian"></i>
           <i class="icon-locat icon-jia" @click="addControl"></i>
-          <!-- <i class="iconfont icon-xianxingwode-copy-copy mr-10"></i> -->
+          <!-- <i class="mr-10 iconfont icon-xianxingwode-copy-copy"></i> -->
           <!-- <i class="iconfont icon-zengjiatianjiajiahao-copy"></i> -->
         </span>
       </div>

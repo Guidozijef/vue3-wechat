@@ -3,7 +3,7 @@
     <div class="people-box">
       <div>
         <img class="other-header-img" :src="otherImg" alt="" />
-        <input type="file" name="" class="other-header-img_upload" @change="uploadOtherImg" />
+        <input type="file" name="" accept="image/*" class="other-header-img_upload" @change="uploadOtherImg" />
       </div>
       <div class="name-info">
         <span v-if="isEdit" class="other-name" @click="intoEdit">{{ otherName }}</span>
@@ -17,7 +17,7 @@
             <i v-else-if="isPlay === 'pause'" class="iconfont icon-zanting" @click="pause"></i>
           </div>
           <img v-else class="content-img" :src="currVideoSrc" alt="" />
-          <input type="file" name="" class="other-header-img_upload" @change="uploadVideo" />
+          <input type="file" accept="video/*" name="" class="other-header-img_upload" @change="uploadVideo" />
         </div>
         <div class="desc-box">
           <span v-if="isTimeEdit" class="other-name" @click="intoTimeEdit">{{ time }}</span>
